@@ -1,14 +1,19 @@
-import { Component, Query, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header';
-import {  Quests } from "./quests/quests";
+import { Component } from '@angular/core';
+import { Quests } from './quests/quests';
+import { HeaderComponent } from "./header/header"; // cesta podľa projektu
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, Quests],
+  standalone: true,
+  imports: [Quests, HeaderComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('juraj');
+  showQuests = true; // prepínač zobrazovania
+
+  toggleQuests() {
+    console.log('Toggle quests view');
+    this.showQuests = !this.showQuests;
+  }
 }

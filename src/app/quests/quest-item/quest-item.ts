@@ -1,5 +1,5 @@
 import { Component,input,output } from '@angular/core';
-import { Quest } from '../quests';
+import { Quest } from '../quests.service';
 
 @Component({
   selector: 'app-quest-item',

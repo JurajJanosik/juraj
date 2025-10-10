@@ -1,3 +1,13 @@
-<app-header></app-header>
-<app-quests></app-quests>
-<router-outlet></router-outlet>
+<app-header> </app-header>
+
+<body>
+    <button (click)="toggleQuests()">
+    {{ showQuests ? 'Skryť Quests komponent' : 'Zobraziť Quests komponent' }}
+    </button>
+
+    <hr>
+
+    @if (showQuests) {
+    <app-quests></app-quests>
+    }
+</body>

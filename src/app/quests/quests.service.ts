@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Quest } from './quests/quests';
+
+export interface Quest {
+  id: number;
+  title: string;
+  description: string;
+  xp: number;
+}
 
 @Injectable({
   providedIn: 'root'
