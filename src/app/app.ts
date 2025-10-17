@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Quests } from './quests/quests';
-import { HeaderComponent } from "./header/header"; // cesta podľa projektu
+import { HeaderComponent } from "./header/header";
+import {RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Quests, HeaderComponent],
+  imports: [HeaderComponent, RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
