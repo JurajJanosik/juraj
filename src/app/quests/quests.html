@@ -7,7 +7,7 @@
 
 
   @for (quest of quests; track quest.id; let i = $index) {
-  <app-quest-item [quest]="quest" (deleteQuest)="deleteQuest($event)"></app-quest-item>
+  <app-quest-item [quest]="quest" (deleteQuest)="deleteQuest($event)" [routerLink]="[quest.id]"></app-quest-item>
   <hr>
   } @empty {
   <p>Momentálne nie sú dostupné žiadne questy.</p>
