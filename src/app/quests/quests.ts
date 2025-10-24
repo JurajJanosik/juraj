@@ -1,23 +1,35 @@
-import { Component, OnInit, OnDestroy, inject, } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, Signal, computed} from '@angular/core';
 import { QuestItem } from './quest-item/quest-item';
-import { QuestsService } from './quests.service';
+import { QuestsService, Quest } from './quests.service';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';   
 
 @Component({
   selector: 'app-quests',
   standalone: true,
-  imports: [QuestItem, RouterModule],
+  imports: [QuestItem, RouterModule, FormsModule],  
   templateUrl: './quests.html',
   styleUrls: ['./quests.css']
 })
 export class Quests implements OnInit, OnDestroy {
   private questsService = inject(QuestsService);
 
-  quests = this.questsService.getQuests();
+  questsSig = this.questsService.questsSig;
+  quests: Signal<Quest[]> = computed(() => this.questsSig());
 
-  addQuest() {
-    const q = { id: 1, title: 'New Quest', description: 'A new quest added.', xp: 50 };
-    this.questsService.addQuest(q);
+  
+  onAdd(form: any) {
+    const { title, description, xp } = form.value;
+
+    const newQuest = {
+      id: Date.now(),          
+      title,
+      description,
+      xp: Number(xp)
+    };
+
+    this.questsService.addQuest(newQuest);
+    form.reset();
   }
 
   deleteQuest(id: number) {

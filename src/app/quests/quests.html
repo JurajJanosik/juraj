@@ -1,17 +1,23 @@
-<section class="quests">
-  <h2>Quests</h2>
-  <!-- <p></p> -->
-</section>
+<p>Počet questov: {{ questsSig().length }}</p>
+
+
+<form (ngSubmit)="onAdd(f)" #f="ngForm" style="margin-bottom:1rem; display:flex; gap:8px; flex-wrap:wrap">
+  <input type="text" name="title" ngModel placeholder="Názov questu" required>
+  <input type="text" name="description" ngModel placeholder="Popis" required>
+  <input type="number" name="xp" ngModel placeholder="XP" required min="1">
+  <button type="submit">Pridať quest</button>
+</form>
+<hr>
 
 <section class="quests">
-
-
-  @for (quest of quests; track quest.id; let i = $index) {
-  <app-quest-item [quest]="quest" (deleteQuest)="deleteQuest($event)" [routerLink]="[quest.id]"></app-quest-item>
-  <hr>
+  @for (quest of questsSig(); track quest.id; let i = $index) {
+    <app-quest-item
+      [quest]="quest"
+      (deleteQuest)="deleteQuest($event)"
+      [routerLink]="[quest.id]">
+    </app-quest-item>
+    <hr>
   } @empty {
-  <p>Momentálne nie sú dostupné žiadne questy.</p>
+    <p>Momentálne nie sú dostupné žiadne questy.</p>
   }
-
-
 </section>
